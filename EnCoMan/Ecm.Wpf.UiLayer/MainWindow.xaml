@@ -4,9 +4,114 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ecm.Wpf.UiLayer"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid>
+            <TabControl x:Name="tabControl">
+                <TabItem Header="Hodnoty dne" Margin="0,0,-4,-2">
+
+                    <Grid Height="Auto"  VerticalAlignment="Top" Margin="10,10,0,0" HorizontalAlignment="Left" Width="482">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="130*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Den"  VerticalAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="0,2" />
+                        <Grid Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="130*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Content="&lt;" VerticalAlignment="Center" Grid.Column="1" Padding="3" Margin="5,0,5,0"/>
+                            <DatePicker VerticalAlignment="Center" Grid.Column="0"   />
+                            <Button Content="&gt;" Grid.Column="2" Margin="0" VerticalAlignment="Center" Padding="3"/>
+
+
+                        </Grid>
+                        <Label Content="Teplota vnitřní [°C]"  VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="1" Height="26" Margin="0,2"/>
+                        <Label Content="Teplota venkovní [°C]"  VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="2" Height="26" Margin="0,2"/>
+                        <Label Content="Stav elektroměru [kWh]"  VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="3" Height="26" Margin="0,2"/>
+                        <Label Content="Stav vodoměru [m3]"  VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="4" Height="26" Margin="0,2"/>
+                        <Label Content="Stav plynoměru [kWh]"  VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="5" Height="26" Margin="0,2"/>
+
+                        <xctk:WatermarkTextBox Grid.Column="4" Grid.Row="1" VerticalAlignment="Center" Height="22" Margin="0,4" Watermark="Poznámka" />
+                        <xctk:WatermarkTextBox Grid.Column="4" Watermark="Poznámka" Grid.Row="2" VerticalAlignment="Center" Height="22" Margin="0,4" />
+                        <xctk:WatermarkTextBox Grid.Column="4" Watermark="Poznámka" Grid.Row="3" VerticalAlignment="Center" Height="22" Margin="0,4" />
+                        <xctk:WatermarkTextBox Grid.Column="4" Watermark="Poznámka" Grid.Row="4" VerticalAlignment="Center" Height="22" Margin="0,4" />
+                        <xctk:WatermarkTextBox Grid.Column="4" Watermark="Poznámka" Grid.Row="5" VerticalAlignment="Center" Height="22" Margin="0,4" />
+
+                        <TextBox Grid.Column="2"  Grid.Row="1" VerticalAlignment="Center" Height="22" Margin="0,4" />
+                        <TextBox Grid.Column="2"  Grid.Row="2" VerticalAlignment="Center" Height="22" Margin="0,4" />
+                        <TextBox Grid.Column="2"  Grid.Row="3" VerticalAlignment="Center" Height="22" Margin="0,4" />
+                        <TextBox Grid.Column="2"  Grid.Row="4" VerticalAlignment="Center" Height="22" Margin="0,4" />
+                        <TextBox Grid.Column="2"  Grid.Row="5" VerticalAlignment="Center" Height="22" Margin="0,4" />
+                        <Button Content="Uložit" Grid.Column="4" Margin="0" Padding="10,0,10,0" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="22" Width="53"/>
+
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Měsíční výpis" ScrollViewer.CanContentScroll="True">
+                    <Grid Background="White" ShowGridLines="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                        </Grid.ColumnDefinitions>
+
+                    </Grid>
+                </TabItem>
+            </TabControl>
+
+        </Grid>
     </Grid>
 </Window>
