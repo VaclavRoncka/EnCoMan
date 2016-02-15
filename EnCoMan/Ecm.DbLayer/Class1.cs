@@ -1,12 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ecm.DbLayer
 {
     public class Class1
     {
+        public event EventHandler MyEvent;
+
+        public Class1()
+        {
+            MyEvent?.Invoke(null, null);
+        }
+
+
+
+        public void Metoda()
+        {
+            var x = new Class1();
+        }
     }
 }
