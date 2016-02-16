@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="20eea232aee54f5b8e77311570c3c3a7" Name="Diagram1">
+        <EntityTypeShape EntityType="EcmDbModel.Configuration" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcmDbModel.EnergyType" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcmDbModel.Periodicity" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcmDbModel.Record" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcmDbModel.User" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="EcmDbModel.FK_Configuration_EnergyType" ManuallyRouted="false" />
+        <AssociationConnector Association="EcmDbModel.FK_Configuration_Periodicity" ManuallyRouted="false" />
+        <AssociationConnector Association="EcmDbModel.FK_Configuration_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="EcmDbModel.FK_Values_EnergyType" ManuallyRouted="false" />
+        <AssociationConnector Association="EcmDbModel.FK_Values_Periodicity" ManuallyRouted="false" />
+        <AssociationConnector Association="EcmDbModel.FK_Values_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EcmDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="EnergyTypeId" Type="int" Nullable="false" />
+          <Property Name="PeriodicityId" Type="int" Nullable="false" />
+          <Property Name="Order" Type="smallint" Nullable="false" />
+          <Property Name="Note" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="EnergyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Unit" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Periodicity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Record">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+          <Property Name="EnergyTypeId" Type="int" Nullable="false" />
+          <Property Name="PeriodicityId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Configuration_EnergyType">
+          <End Role="EnergyType" Type="Self.EnergyType" Multiplicity="1" />
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnergyType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Configuration">
+              <PropertyRef Name="EnergyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configuration_Periodicity">
+          <End Role="Periodicity" Type="Self.Periodicity" Multiplicity="1" />
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Periodicity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Configuration">
+              <PropertyRef Name="PeriodicityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configuration_Users">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Configuration">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Values_EnergyType">
+          <End Role="EnergyType" Type="Self.EnergyType" Multiplicity="1" />
+          <End Role="Record" Type="Self.Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnergyType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Record">
+              <PropertyRef Name="EnergyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Values_Periodicity">
+          <End Role="Periodicity" Type="Self.Periodicity" Multiplicity="1" />
+          <End Role="Record" Type="Self.Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Periodicity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Record">
+              <PropertyRef Name="PeriodicityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Values_Users">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Record" Type="Self.Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Record">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EcmDbModelStoreContainer">
+          <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnergyType" EntityType="Self.EnergyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Periodicity" EntityType="Self.Periodicity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Configuration_EnergyType" Association="Self.FK_Configuration_EnergyType">
+            <End Role="EnergyType" EntitySet="EnergyType" />
+            <End Role="Configuration" EntitySet="Configuration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configuration_Periodicity" Association="Self.FK_Configuration_Periodicity">
+            <End Role="Periodicity" EntitySet="Periodicity" />
+            <End Role="Configuration" EntitySet="Configuration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configuration_Users" Association="Self.FK_Configuration_Users">
+            <End Role="User" EntitySet="User" />
+            <End Role="Configuration" EntitySet="Configuration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Values_EnergyType" Association="Self.FK_Values_EnergyType">
+            <End Role="EnergyType" EntitySet="EnergyType" />
+            <End Role="Record" EntitySet="Record" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Values_Periodicity" Association="Self.FK_Values_Periodicity">
+            <End Role="Periodicity" EntitySet="Periodicity" />
+            <End Role="Record" EntitySet="Record" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Values_Users" Association="Self.FK_Values_Users">
+            <End Role="User" EntitySet="User" />
+            <End Role="Record" EntitySet="Record" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EcmDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="EnergyTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PeriodicityId" Type="Int32" Nullable="false" />
+          <Property Name="Order" Type="Int16" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EnergyType" Relationship="Self.FK_Configuration_EnergyType" FromRole="Configuration" ToRole="EnergyType" />
+          <NavigationProperty Name="Periodicity" Relationship="Self.FK_Configuration_Periodicity" FromRole="Configuration" ToRole="Periodicity" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Configuration_Users" FromRole="Configuration" ToRole="User" />
+        </EntityType>
+        <EntityType Name="EnergyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Unit" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Configurations" Relationship="Self.FK_Configuration_EnergyType" FromRole="EnergyType" ToRole="Configuration" />
+          <NavigationProperty Name="Records" Relationship="Self.FK_Values_EnergyType" FromRole="EnergyType" ToRole="Record" />
+        </EntityType>
+        <EntityType Name="Periodicity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Configurations" Relationship="Self.FK_Configuration_Periodicity" FromRole="Periodicity" ToRole="Configuration" />
+          <NavigationProperty Name="Records" Relationship="Self.FK_Values_Periodicity" FromRole="Periodicity" ToRole="Record" />
+        </EntityType>
+        <EntityType Name="Record">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <Property Name="EnergyTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PeriodicityId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EnergyType" Relationship="Self.FK_Values_EnergyType" FromRole="Record" ToRole="EnergyType" />
+          <NavigationProperty Name="Periodicity" Relationship="Self.FK_Values_Periodicity" FromRole="Record" ToRole="Periodicity" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Values_Users" FromRole="Record" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Configurations" Relationship="Self.FK_Configuration_Users" FromRole="User" ToRole="Configuration" />
+          <NavigationProperty Name="Records" Relationship="Self.FK_Values_Users" FromRole="User" ToRole="Record" />
+        </EntityType>
+        <Association Name="FK_Configuration_EnergyType">
+          <End Role="EnergyType" Type="Self.EnergyType" Multiplicity="1" />
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnergyType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Configuration">
+              <PropertyRef Name="EnergyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configuration_Periodicity">
+          <End Role="Periodicity" Type="Self.Periodicity" Multiplicity="1" />
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Periodicity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Configuration">
+              <PropertyRef Name="PeriodicityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Configuration_Users">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Configuration" Type="Self.Configuration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Configuration">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Values_EnergyType">
+          <End Role="EnergyType" Type="Self.EnergyType" Multiplicity="1" />
+          <End Role="Record" Type="Self.Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnergyType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Record">
+              <PropertyRef Name="EnergyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Values_Periodicity">
+          <End Role="Periodicity" Type="Self.Periodicity" Multiplicity="1" />
+          <End Role="Record" Type="Self.Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Periodicity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Record">
+              <PropertyRef Name="PeriodicityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Values_Users">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Record" Type="Self.Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Record">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EcmDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Configurations" EntityType="Self.Configuration" />
+          <EntitySet Name="EnergyTypes" EntityType="Self.EnergyType" />
+          <EntitySet Name="Periodicities" EntityType="Self.Periodicity" />
+          <EntitySet Name="Records" EntityType="Self.Record" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Configuration_EnergyType" Association="Self.FK_Configuration_EnergyType">
+            <End Role="EnergyType" EntitySet="EnergyTypes" />
+            <End Role="Configuration" EntitySet="Configurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configuration_Periodicity" Association="Self.FK_Configuration_Periodicity">
+            <End Role="Periodicity" EntitySet="Periodicities" />
+            <End Role="Configuration" EntitySet="Configurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Configuration_Users" Association="Self.FK_Configuration_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Configuration" EntitySet="Configurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Values_EnergyType" Association="Self.FK_Values_EnergyType">
+            <End Role="EnergyType" EntitySet="EnergyTypes" />
+            <End Role="Record" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Values_Periodicity" Association="Self.FK_Values_Periodicity">
+            <End Role="Periodicity" EntitySet="Periodicities" />
+            <End Role="Record" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Values_Users" Association="Self.FK_Values_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Record" EntitySet="Records" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EcmDbModelStoreContainer" CdmEntityContainer="EcmDbContext">
+          <EntitySetMapping Name="Configurations">
+            <EntityTypeMapping TypeName="EcmDbModel.Configuration">
+              <MappingFragment StoreEntitySet="Configuration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EnergyTypeId" ColumnName="EnergyTypeId" />
+                <ScalarProperty Name="PeriodicityId" ColumnName="PeriodicityId" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnergyTypes">
+            <EntityTypeMapping TypeName="EcmDbModel.EnergyType">
+              <MappingFragment StoreEntitySet="EnergyType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Periodicities">
+            <EntityTypeMapping TypeName="EcmDbModel.Periodicity">
+              <MappingFragment StoreEntitySet="Periodicity">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Records">
+            <EntityTypeMapping TypeName="EcmDbModel.Record">
+              <MappingFragment StoreEntitySet="Record">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="EnergyTypeId" ColumnName="EnergyTypeId" />
+                <ScalarProperty Name="PeriodicityId" ColumnName="PeriodicityId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="EcmDbModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
