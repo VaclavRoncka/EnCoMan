@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -11,14 +12,26 @@ namespace Ecm.DbLayer
 
     public class DbManager
     {
-        
-
-        public static void AddUser()
+        public static List<Configuration> GetConfigurations(int userId)
         {
             using (var ctx = new Entities())
             {
-                var newUser = new User() {UserName = "Shipo"};
-                ctx.Users.Add(newUser);
+                return ctx.Configurations
+                    .Include("User")
+                    .Include("EnergyType")
+                    .Include("Periodicity")
+                    .AsNoTracking()
+                    .Where( c=> c.UserId == userId)
+                    .ToList();
+            }
+        } 
+        
+
+        public static void AddUser(User user)
+        {
+            using (var ctx = new Entities())
+            {
+                ctx.Users.Add(user);
 
                 ctx.SaveChanges();
             }
