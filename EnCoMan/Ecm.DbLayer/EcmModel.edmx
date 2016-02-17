@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EcmDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="EcmModelDb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Configuration">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,7 +14,7 @@
           <Property Name="EnergyTypeId" Type="int" Nullable="false" />
           <Property Name="PeriodicityId" Type="int" Nullable="false" />
           <Property Name="Order" Type="smallint" Nullable="false" />
-          <Property Name="Note" Type="varchar" MaxLength="256" />
+          <Property Name="Name" Type="varchar" MaxLength="32" Nullable="false" />
         </EntityType>
         <EntityType Name="EnergyType">
           <Key>
@@ -41,6 +41,7 @@
           <Property Name="EnergyTypeId" Type="int" Nullable="false" />
           <Property Name="PeriodicityId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Note" Type="varchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -121,7 +122,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EcmDbModelStoreContainer">
+        <EntityContainer Name="EcmModelDbStoreContainer">
           <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EnergyType" EntityType="Self.EnergyType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Periodicity" EntityType="Self.Periodicity" Schema="dbo" store:Type="Tables" />
@@ -156,7 +157,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="EcmDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="EcmModelDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Configuration">
           <Key>
             <PropertyRef Name="Id" />
@@ -166,7 +167,7 @@
           <Property Name="EnergyTypeId" Type="Int32" Nullable="false" />
           <Property Name="PeriodicityId" Type="Int32" Nullable="false" />
           <Property Name="Order" Type="Int16" Nullable="false" />
-          <Property Name="Note" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="EnergyType" Relationship="Self.FK_Configuration_EnergyType" FromRole="Configuration" ToRole="EnergyType" />
           <NavigationProperty Name="Periodicity" Relationship="Self.FK_Configuration_Periodicity" FromRole="Configuration" ToRole="Periodicity" />
           <NavigationProperty Name="User" Relationship="Self.FK_Configuration_Users" FromRole="Configuration" ToRole="User" />
@@ -200,6 +201,7 @@
           <Property Name="EnergyTypeId" Type="Int32" Nullable="false" />
           <Property Name="PeriodicityId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="EnergyType" Relationship="Self.FK_Values_EnergyType" FromRole="Record" ToRole="EnergyType" />
           <NavigationProperty Name="Periodicity" Relationship="Self.FK_Values_Periodicity" FromRole="Record" ToRole="Periodicity" />
           <NavigationProperty Name="User" Relationship="Self.FK_Values_Users" FromRole="Record" ToRole="User" />
@@ -285,7 +287,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EcmDbContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Configurations" EntityType="Self.Configuration" />
           <EntitySet Name="EnergyTypes" EntityType="Self.EnergyType" />
           <EntitySet Name="Periodicities" EntityType="Self.Periodicity" />
@@ -321,21 +323,21 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EcmDbModelStoreContainer" CdmEntityContainer="EcmDbContext">
+        <EntityContainerMapping StorageEntityContainer="EcmModelDbStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Configurations">
-            <EntityTypeMapping TypeName="EcmDbModel.Configuration">
+            <EntityTypeMapping TypeName="EcmModelDb.Configuration">
               <MappingFragment StoreEntitySet="Configuration">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="EnergyTypeId" ColumnName="EnergyTypeId" />
                 <ScalarProperty Name="PeriodicityId" ColumnName="PeriodicityId" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EnergyTypes">
-            <EntityTypeMapping TypeName="EcmDbModel.EnergyType">
+            <EntityTypeMapping TypeName="EcmModelDb.EnergyType">
               <MappingFragment StoreEntitySet="EnergyType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -344,7 +346,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Periodicities">
-            <EntityTypeMapping TypeName="EcmDbModel.Periodicity">
+            <EntityTypeMapping TypeName="EcmModelDb.Periodicity">
               <MappingFragment StoreEntitySet="Periodicity">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -352,7 +354,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Records">
-            <EntityTypeMapping TypeName="EcmDbModel.Record">
+            <EntityTypeMapping TypeName="EcmModelDb.Record">
               <MappingFragment StoreEntitySet="Record">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -360,11 +362,12 @@
                 <ScalarProperty Name="EnergyTypeId" ColumnName="EnergyTypeId" />
                 <ScalarProperty Name="PeriodicityId" ColumnName="PeriodicityId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="EcmDbModel.User">
+            <EntityTypeMapping TypeName="EcmModelDb.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />

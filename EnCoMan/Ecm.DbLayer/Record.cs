@@ -20,6 +20,7 @@ namespace Ecm.DbLayer
         public int EnergyTypeId { get; set; }
         public int PeriodicityId { get; set; }
         public int UserId { get; set; }
+        public string Note { get; set; }
     
         public virtual EnergyType EnergyType { get; set; }
         public virtual Periodicity Periodicity { get; set; }

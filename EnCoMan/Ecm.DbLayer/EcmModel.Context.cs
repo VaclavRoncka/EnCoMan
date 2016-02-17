@@ -13,10 +13,10 @@ namespace Ecm.DbLayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EcmDbContext : DbContext
+    public partial class Entities : DbContext
     {
-        public EcmDbContext()
-            : base("name=EcmDbContext")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
