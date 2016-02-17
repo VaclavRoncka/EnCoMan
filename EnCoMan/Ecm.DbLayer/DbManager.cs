@@ -17,7 +17,7 @@ namespace Ecm.DbLayer
         {
             using (var ctx = new Entities())
             {
-                var newUser = new User() {UserName = "Shipo"};
+                var newUser = new User() {UserName = "FarmasjeBuh"};
                 ctx.Users.Add(newUser);
 
                 ctx.SaveChanges();
