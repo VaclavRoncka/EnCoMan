@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecm.Web.UiLayer", "Ecm.Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecm.Web.UiLayer.Tests", "Ecm.Web.UiLayer.Tests\Ecm.Web.UiLayer.Tests.csproj", "{77FE9C1C-C1D2-4879-883E-C488689124B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecm.Common", "Ecm.Common\Ecm.Common.csproj", "{68549A28-76DA-4792-9463-8E8630129DF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{77FE9C1C-C1D2-4879-883E-C488689124B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77FE9C1C-C1D2-4879-883E-C488689124B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77FE9C1C-C1D2-4879-883E-C488689124B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68549A28-76DA-4792-9463-8E8630129DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68549A28-76DA-4792-9463-8E8630129DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68549A28-76DA-4792-9463-8E8630129DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68549A28-76DA-4792-9463-8E8630129DF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

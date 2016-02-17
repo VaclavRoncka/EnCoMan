@@ -16,7 +16,7 @@ namespace Ecm.DbLayer
     public partial class Entities : DbContext
     {
         public Entities()
-            : base("name=Entities")
+            : base("name=EcmDbContext")
         {
         }
     

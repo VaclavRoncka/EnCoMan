@@ -9,6 +9,7 @@ namespace Ecm.DbLayer.Test
         [TestMethod]
         public void TestMethod1()
         {
+            //Ecm.DbLayer.DbManager.AddUser();
         }
     }
 }
