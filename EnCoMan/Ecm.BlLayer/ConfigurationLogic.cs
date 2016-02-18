@@ -13,7 +13,7 @@ namespace Ecm.BlLayer
     {
         public static ICollection<ConfigurationDto> GetConfigurationList()
         {
-            var confList = DbManager.GetConfigurations(1);
+            var confList = DbConfigurationManager.GetConfigurations(1);
             return AutoMapper.Instance.Map<List<ConfigurationDto>>(confList); 
         }
     }
