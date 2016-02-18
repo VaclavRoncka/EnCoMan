@@ -130,9 +130,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ecm.DbLayer\Ecm.DbLayer.csproj">
-      <Project>{404e9553-5732-4dcb-9636-5b070ebcead3}</Project>
-      <Name>Ecm.DbLayer</Name>
+    <ProjectReference Include="..\Ecm.BlLayer\Ecm.BlLayer.csproj">
+      <Project>{522A8B94-32B7-479D-9B11-CB863992912C}</Project>
+      <Name>Ecm.BlLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ecm.Common\Ecm.Common.csproj">
+      <Project>{68549A28-76DA-4792-9463-8E8630129DF1}</Project>
+      <Name>Ecm.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
