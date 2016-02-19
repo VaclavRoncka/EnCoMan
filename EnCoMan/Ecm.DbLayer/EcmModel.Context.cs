@@ -12,11 +12,13 @@ namespace Ecm.DbLayer
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class Entities : DbContext
     {
         public Entities()
-            : base("name=EcmDbContext")
+            : base("name=Entities")
         {
         }
     
@@ -30,5 +32,10 @@ namespace Ecm.DbLayer
         public virtual DbSet<Periodicity> Periodicities { get; set; }
         public virtual DbSet<Record> Records { get; set; }
         public virtual DbSet<User> Users { get; set; }
+    
+        public virtual int ResetDatabaseData()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ResetDatabaseData");
+        }
     }
 }

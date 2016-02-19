@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Ecm.BlLayer;
+using Ecm.Common.Dto;
 
 
 namespace Ecm.Wpf.UiLayer
@@ -29,7 +30,33 @@ namespace Ecm.Wpf.UiLayer
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var list = ConfigurationLogic.GetConfigurationList();
+            // Reset database
+            ConfigurationLogic.ResetDatabaseData();
+            
+            // Get all
+            var allConfigurations = ConfigurationLogic.GetConfigurationList();
+
+            
+
+            // Create
+            var newConf = ConfigurationLogic.CreateConfiguration(new ConfigurationDto()
+                                   {
+                                       EnergyType = new EnergyTypeDto() { Id = 1},
+                                       Periodicity = new PeriodicityDto() { Id = 1},
+                                       Name = "Mová konfigurace 1",
+                                       Order = (short)(allConfigurations.Max(c => c.Order) + 1),
+                                       User = new UserDto() { Id = 1}
+                                   });
+
+            // Get one configuration
+            var firstConfiguration = ConfigurationLogic.GetConfiguration(1);
+
+            // update
+            firstConfiguration.Name = "Aktualizovaná Konfigurace: " + DateTime.Now.ToShortTimeString();
+            ConfigurationLogic.UpdateConfiguration(firstConfiguration);
+
+            // delete
+            ConfigurationLogic.DeleteConfiguration(2);
         }
     }
 }

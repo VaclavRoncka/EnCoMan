@@ -42,12 +42,9 @@ namespace Ecm.DbLayer
         {
             using (var ctx = new Entities())
             {
-                var conf = GetConfiguration(id);
+                ctx.Entry<Configuration>(new Configuration() {Id = id})
+                    .State = EntityState.Deleted;
 
-                if (conf == null)
-                    return;
-
-                ctx.Configurations.Remove(conf);
                 ctx.SaveChanges();
             }
         }
@@ -56,7 +53,8 @@ namespace Ecm.DbLayer
         {
             using (var ctx = new Entities())
             {
-                var conf = GetConfiguration(configuration.Id);
+                var conf = ctx.Configurations
+                    .Single(c => c.Id == configuration.Id);
 
                 conf.EnergyTypeId  = configuration.EnergyTypeId;
                 conf.PeriodicityId = configuration.PeriodicityId;
@@ -67,12 +65,18 @@ namespace Ecm.DbLayer
             }
         }
 
-        public static void InsertConfiguration(Configuration configuration)
+        public static Configuration CreateConfiguration(Configuration configuration)
         {
+            configuration.User = null;
+            configuration.EnergyType = null;
+            configuration.Periodicity = null;
+
             using (var ctx = new Entities())
             {
                 ctx.Configurations.Add(configuration);
                 ctx.SaveChanges();
+
+                return configuration;
             }
         }
 

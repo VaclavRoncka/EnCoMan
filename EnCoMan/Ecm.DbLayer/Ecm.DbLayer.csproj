@@ -55,6 +55,7 @@
     <Compile Include="Configuration.cs">
       <DependentUpon>EcmModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbStoredProcedureManager.cs" />
     <Compile Include="EcmModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

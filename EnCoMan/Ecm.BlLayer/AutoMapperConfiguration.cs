@@ -17,6 +17,11 @@ namespace Ecm.BlLayer
                 c.CreateMap<User, UserDto>();
                 c.CreateMap<EnergyType, EnergyTypeDto>();
                 c.CreateMap<Periodicity, PeriodicityDto>();
+
+                c.CreateMap<ConfigurationDto, Configuration>();
+                c.CreateMap<UserDto, User>();
+                c.CreateMap<EnergyTypeDto, EnergyType>();
+                c.CreateMap<PeriodicityDto, Periodicity>();
             }).CreateMapper();
         }
     }
