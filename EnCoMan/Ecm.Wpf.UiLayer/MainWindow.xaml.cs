@@ -34,7 +34,7 @@ namespace Ecm.Wpf.UiLayer
             ConfigurationLogic.ResetDatabaseData();
             
             // Get all
-            var allConfigurations = ConfigurationLogic.GetConfigurationList();
+            var allConfigurations = ConfigurationLogic.GetConfigurationList(1);
 
             
 
