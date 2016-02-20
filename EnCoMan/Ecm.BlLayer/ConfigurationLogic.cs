@@ -11,10 +11,10 @@ namespace Ecm.BlLayer
 {
     public class ConfigurationLogic
     {
-        public static ICollection<ConfigurationDto> GetConfigurationList()
+        public static ICollection<ConfigurationDto> GetConfigurationList(int userId)
         {
             return AutoMapper.Instance.Map<List<ConfigurationDto>>(
-                DbConfigurationManager.GetConfigurations(1)); 
+                DbConfigurationManager.GetConfigurations(userId)); 
         }
 
         public static ConfigurationDto GetConfiguration(int configurationId)

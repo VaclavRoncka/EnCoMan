@@ -11,13 +11,13 @@ namespace Ecm.Web.UiLayer.Controllers
 {
     public class ConfigurationController : ApiController
     {
-        [Route("Api/Configuration/GetConfigurations")]
-        public IEnumerable<ConfigurationDto> GetConfigurations()
+        [Route("Api/Configuration/GetConfigurations/{userId}")]
+        public IEnumerable<ConfigurationDto> GetConfigurations(int userId)
         {
-            return ConfigurationLogic.GetConfigurationList();
+            return ConfigurationLogic.GetConfigurationList(userId);
         }
 
-        [Route("Api/Configuration/GetConfiguration")]
+        [Route("Api/Configuration/GetConfiguration/{configurationId}")]
         public ConfigurationDto GetConfiguration(int configurationId)
         {
             return ConfigurationLogic.GetConfiguration(configurationId);
