@@ -11,8 +11,8 @@ namespace Ecm.Web.UiLayer.Controllers
 {
     public class ConfigurationController : ApiController
     {
-        [Route("Api/Configuration/GetConfigurations/{userId}")]
-        public IEnumerable<ConfigurationDto> GetConfigurations(int userId)
+        [Route("Api/Configuration/GetUserConfigurations/{userId:int?}")]
+        public IEnumerable<ConfigurationDto> GetUserConfigurations(int? userId=null)
         {
             return ConfigurationLogic.GetConfigurationList(userId);
         }
@@ -41,12 +41,12 @@ namespace Ecm.Web.UiLayer.Controllers
             return ConfigurationLogic.CreateConfiguration(configuration);
         }
 
-        [Route("Api/ResetDatabaseData")]
-        public void ResetDatabaseData()
+        [HttpGet]
+        [Route("Api/ResetDatabaseData/{from:datetime}/{to:datetime}")]
+        public void ResetDatabaseData(DateTime from, DateTime to)
         {
             ConfigurationLogic.ResetDatabaseData();
+            ConfigurationLogic.GenerateRandomRecords(from, to);
         }
-
-
     }
 }

@@ -15,9 +15,9 @@ namespace Ecm.DbLayer
             using (var ctx = new Entities())
             {
                 var command = ctx.Configurations
-                    .Include("User")
-                    .Include("EnergyType")
-                    .Include("Periodicity")
+                    .Include(c => c.User)
+                    .Include(c => c.Periodicity)
+                    .Include(c => c.EnergyType)
                     .AsNoTracking().AsQueryable();
 
                 if (userId.HasValue)
@@ -32,9 +32,9 @@ namespace Ecm.DbLayer
             using (var ctx = new Entities())
             {
                 return ctx.Configurations
-                    .Include("User")
-                    .Include("EnergyType")
-                    .Include("Periodicity")
+                    .Include(c => c.User)
+                    .Include(c => c.Periodicity)
+                    .Include(c => c.EnergyType)
                     .AsNoTracking()
                     .SingleOrDefault(c => c.Id == id);
             }
