@@ -55,6 +55,7 @@
     <Compile Include="Configuration.cs">
       <DependentUpon>EcmModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbRecordManager.cs" />
     <Compile Include="DbStoredProcedureManager.cs" />
     <Compile Include="EcmModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -78,6 +79,7 @@
       <DependentUpon>EcmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomGenerator.cs" />
     <Compile Include="Record.cs">
       <DependentUpon>EcmModel.tt</DependentUpon>
     </Compile>

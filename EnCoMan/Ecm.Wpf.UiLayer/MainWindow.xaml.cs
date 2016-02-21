@@ -33,30 +33,32 @@ namespace Ecm.Wpf.UiLayer
             // Reset database
             ConfigurationLogic.ResetDatabaseData();
             
-            // Get all
-            var allConfigurations = ConfigurationLogic.GetConfigurationList(1);
+            //// Get all
+            //var allConfigurations = ConfigurationLogic.GetConfigurationList(1);
 
             
 
-            // Create
-            var newConf = ConfigurationLogic.CreateConfiguration(new ConfigurationDto()
-                                   {
-                                       EnergyType = new EnergyTypeDto() { Id = 1},
-                                       Periodicity = new PeriodicityDto() { Id = 1},
-                                       Name = "Mová konfigurace 1",
-                                       Order = (short)(allConfigurations.Max(c => c.Order) + 1),
-                                       User = new UserDto() { Id = 1}
-                                   });
+            //// Create
+            //var newConf = ConfigurationLogic.CreateConfiguration(new ConfigurationDto()
+            //                       {
+            //                           EnergyType = new EnergyTypeDto() { Id = 1},
+            //                           Periodicity = new PeriodicityDto() { Id = 1},
+            //                           Name = "Mová konfigurace 1",
+            //                           Order = (short)(allConfigurations.Max(c => c.Order) + 1),
+            //                           User = new UserDto() { Id = 1}
+            //                       });
 
-            // Get one configuration
-            var firstConfiguration = ConfigurationLogic.GetConfiguration(1);
+            //// Get one configuration
+            //var firstConfiguration = ConfigurationLogic.GetConfiguration(1);
 
-            // update
-            firstConfiguration.Name = "Aktualizovaná Konfigurace: " + DateTime.Now.ToShortTimeString();
-            ConfigurationLogic.UpdateConfiguration(firstConfiguration);
+            //// update
+            //firstConfiguration.Name = "Aktualizovaná Konfigurace: " + DateTime.Now.ToShortTimeString();
+            //ConfigurationLogic.UpdateConfiguration(firstConfiguration);
 
-            // delete
-            ConfigurationLogic.DeleteConfiguration(2);
+            //// delete
+            //ConfigurationLogic.DeleteConfiguration(2);
+
+            ConfigurationLogic.GenerateRandomRecords(new DateTime(2016, 1, 1), new DateTime(2016, 12, 31));
         }
     }
 }

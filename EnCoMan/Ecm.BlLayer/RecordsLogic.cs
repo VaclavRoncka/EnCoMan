@@ -9,8 +9,11 @@ using Ecm.DbLayer;
 
 namespace Ecm.BlLayer
 {
-    public class ConfigurationLogic
+    public class RecordsLogic
     {
+        
+
+
         public static ICollection<ConfigurationDto> GetConfigurationList(int? userId)
         {
             return AutoMapper.Instance.Map<List<ConfigurationDto>>(
@@ -45,11 +48,6 @@ namespace Ecm.BlLayer
         public static void ResetDatabaseData()
         {
             DbStoredProcedureManager.ResetDatabaseData();
-        }
-
-        public static void GenerateRandomRecords(DateTime from, DateTime to)
-        {
-            DbRecordManager.GenerateRandomRecords(from, to);
         }
     }
 }

@@ -10,17 +10,20 @@ namespace Ecm.DbLayer
 {
     public class DbConfigurationManager
     {
-        public static List<Configuration> GetConfigurations(int userId)
+        public static List<Configuration> GetConfigurations(int? userId)
         {
             using (var ctx = new Entities())
             {
-                return ctx.Configurations
+                var command = ctx.Configurations
                     .Include("User")
                     .Include("EnergyType")
                     .Include("Periodicity")
-                    .AsNoTracking()
-                    .Where( c=> c.UserId == userId)
-                    .ToList();
+                    .AsNoTracking().AsQueryable();
+
+                if (userId.HasValue)
+                    command = command.Where(c => c.UserId == userId);
+
+                return command.ToList();
             }
         }
 
