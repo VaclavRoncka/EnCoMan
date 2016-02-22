@@ -93,7 +93,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EcmModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DbBackUp\EnCoMan.bak" />
+    <None Include="DbBackUp\EnCoManDb.bak" />
     <None Include="EcmModel.edmx.diagram">
       <DependentUpon>EcmModel.edmx</DependentUpon>
     </None>
