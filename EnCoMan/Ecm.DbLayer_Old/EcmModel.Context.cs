@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Ecm.DbLayer
+namespace Ecm.DbLayer_Old
 {
     using System;
     using System.Data.Entity;

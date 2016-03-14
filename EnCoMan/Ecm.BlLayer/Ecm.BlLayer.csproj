@@ -54,9 +54,9 @@
       <Project>{68549A28-76DA-4792-9463-8E8630129DF1}</Project>
       <Name>Ecm.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ecm.DbLayer\Ecm.DbLayer.csproj">
+    <ProjectReference Include="..\Ecm.DbLayer_Old\Ecm.DbLayer_Old.csproj">
       <Project>{404e9553-5732-4dcb-9636-5b070ebcead3}</Project>
-      <Name>Ecm.DbLayer</Name>
+      <Name>Ecm.DbLayer_Old</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -7,19 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Ecm.DbLayer
+namespace Ecm.DbLayer_Old
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Configuration
+    public partial class Record
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public System.DateTime Date { get; set; }
+        public double Value { get; set; }
         public int EnergyTypeId { get; set; }
         public int PeriodicityId { get; set; }
-        public short Order { get; set; }
-        public string Name { get; set; }
+        public int UserId { get; set; }
+        public string Note { get; set; }
     
         public virtual EnergyType EnergyType { get; set; }
         public virtual Periodicity Periodicity { get; set; }

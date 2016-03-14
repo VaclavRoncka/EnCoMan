@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Ecm.Common.Dto;
-using Ecm.DbLayer;
+using Ecm.DbLayer_Old;
 
 namespace Ecm.BlLayer
 {

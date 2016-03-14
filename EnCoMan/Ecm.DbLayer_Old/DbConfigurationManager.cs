@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecm.DbLayer
+namespace Ecm.DbLayer_Old
 {
     public class DbConfigurationManager
     {

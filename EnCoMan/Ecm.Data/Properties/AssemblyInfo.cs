@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ecm.DbLayer")]
+[assembly: AssemblyTitle("Ecm.Data")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Ecm.DbLayer")]
+[assembly: AssemblyProduct("Ecm.Data")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bba01130-0ac7-4ffe-8284-694631dd8ffb")]
+[assembly: Guid("8aebf3ad-1440-4799-b42d-ddeb1be1598c")]
 
 // Version information for an assembly consists of the following four values:
 //
